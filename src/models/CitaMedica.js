@@ -7,6 +7,7 @@ const citaMedicaSchema = new mongoose.Schema({
     ref: 'Paciente',
     required: true // FK a la colección de Pacientes
   },
+  
   id_medico: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Medico',
