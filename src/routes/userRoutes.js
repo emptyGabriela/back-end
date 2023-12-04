@@ -17,7 +17,7 @@ function generarToken(usuario) {
 
 function verificarToken(req, res, next) {
     const token = req.headers['authorization'];
-    if (!token) return res.status(403).send('Token requerido.');
+    if (!token) return res.status(403).send({mensaje:'Token requerido.'}));
 
     try {
         
@@ -26,7 +26,7 @@ function verificarToken(req, res, next) {
         req.usuario = decoded;
         next();
     } catch (error) {
-        return res.status(401).send('Token inválido.');
+        return res.status(401).send({mensaje:'Token inválido.'});
     }
 }
 
