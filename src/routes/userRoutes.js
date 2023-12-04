@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/Usuarios')
 
 const JWT_SECRET = process.env.JWT_SECRET || '12345'; 
+const Rol = require("../models/Rol");
 
 function generarToken(usuario) {
     return jwt.sign({ id: usuario._id, rol: usuario.rol }, JWT_SECRET, { expiresIn: '24h' });
@@ -71,7 +72,9 @@ router.post('/login', async (req, res) => {
         const { username, password } = req.body;
 
         // Buscar usuario por correo electrónico
-        const usuario = await User.findOne({ username });
+        const usuario = await User.findOne({ username }).populate({
+            path: 'rol',model:Rol}
+            ).exec();
         if (!usuario) {
             return res.status(401).send({ mensaje:'El usuario no existe.'});
         }
@@ -85,7 +88,7 @@ router.post('/login', async (req, res) => {
         // Generar token JWT
         const token = jwt.sign({ id: usuario._id }, JWT_SECRET, { expiresIn: '24h' });
 
-        res.send({ mensaje: 'Login exitoso', token , _id:usuario._id});
+        res.send({ mensaje: 'Login exitoso', token , _id:usuario._id,rol:usuario.rol.nombre});
     } catch (error) {
         console.error('ERROR:', error);
         res.status(500).json({ mensaje: 'Error al iniciar sesion' });
