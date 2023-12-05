@@ -94,9 +94,9 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
         updateUser.password = password;
     }
 
-    User.update({ _id: id }, updateUser);
+    User.findOneAndUpdate({ _id: id }, updateUser);
 //   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor.", error: error });
+    // res.status(500).json({ mensaje: "Error en el servidor.", error: error });
 //   }
 });
 
