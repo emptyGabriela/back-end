@@ -94,9 +94,10 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
         updateUser.password = password;
     }
 
-    User.findOneAndUpdate({ _id: id }, updateUser);
-    res.send({
-        mensaje: "Login exitoso"})
+    let doc = await User.findOneAndUpdate({ _id: id }, updateUser,{
+        new: true
+      });
+    res.send({mensaje: "Guardado correcto",doc})
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor.", error: error });
   }
