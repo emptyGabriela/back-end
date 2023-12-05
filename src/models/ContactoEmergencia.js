@@ -6,7 +6,7 @@ const contactoEmergenciaSchema = new mongoose.Schema({
   nombre_contacto: {
     type: String,
     required: true,
-    maxlength: 50 // VARCHAR(50)
+    maxlength: 250 // VARCHAR(50)
   },
   numero_telefonico_contacto: {
     type: String,

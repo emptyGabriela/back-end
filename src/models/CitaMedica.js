@@ -21,7 +21,7 @@ const citaMedicaSchema = new mongoose.Schema({
   motivo: {
     type: String,
     required: true,
-    maxlength: 300 // VARCHAR(300)
+    maxlength: 999 // VARCHAR(300)
   },
   presion_arterial: {
     type: String,
@@ -50,17 +50,17 @@ const citaMedicaSchema = new mongoose.Schema({
   diagnostico: {
     type: String,
     required: true,
-    maxlength: 300 // VARCHAR(300)
+    maxlength: 999 // VARCHAR(300)
   },
   tratamiento: {
     type: String,
     required: true,
-    maxlength: 300 // VARCHAR(300)
+    maxlength: 999 // VARCHAR(300)
   },
   notas: {
     type: String,
     required: true,
-    maxlength: 300 // VARCHAR(300)
+    maxlength: 999 // VARCHAR(300)
   },
 
  

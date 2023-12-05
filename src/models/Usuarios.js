@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
   },
   direccion: {
     type: String,
-    maxlength: 100, // VARCHAR(100), opcional (NULL en SQL)
+    maxlength: 999, // VARCHAR(100), opcional (NULL en SQL)
   },
   numero: {
     type: String,
@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
   clinica: {
     type: String,
     required: true,
-    maxlength: 50, // VARCHAR(50)
+    maxlength: 999, // VARCHAR(50)
   },
   foto: {
     type: String,
