@@ -91,7 +91,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
     };
 
     if (password) {
-        updateUser.password = password;
+        updateUser.password =  await bcrypt.hash(password, 8);
     }
 
     let doc = await User.findOneAndUpdate({ _id: id }, updateUser,{
