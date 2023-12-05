@@ -63,7 +63,7 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
 
 // Actualizar usuario (PUT)
 router.put("/usuarios/:id", verificarToken, async (req, res) => {
-  try {
+//   try {
     var { id } = req.params;
     console.log(req.body)
     var {
@@ -95,9 +95,9 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
     }
 
     User.update({ _id: id }, updateUser);
-  } catch (error) {
+//   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor.", error: error });
-  }
+//   }
 });
 
 // Eliminar usuario (DELETE)
