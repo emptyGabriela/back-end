@@ -115,14 +115,14 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
 router.delete(
   "/usuarios/:id",
   verificarToken ,async (req, res) => {
-    try {
+    // try {
       var { id } = req.params;
       // Obtener todos los usuarios. Puedes decidir qué campos excluir en la consulta.
       const usuarios = await User.findOne({ _id: id }).remove().exec(); // Excluye la contraseña en el resultado
       res.json({mensaje: "Eliminado correcto",doc});
-    } catch (error) {
-      res.status(500).json({ mensaje: "Error en el servidor." });
-    }
+    // } catch (error) {
+    //   res.status(500).json({ mensaje: "Error en el servidor." });
+    // }
   }
 );
 
