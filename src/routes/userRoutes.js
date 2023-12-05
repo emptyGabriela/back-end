@@ -106,6 +106,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
         new: true
       });
     res.send({mensaje: "Guardado correcto",doc})
+    
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor.", error: error });
   }
