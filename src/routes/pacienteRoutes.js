@@ -76,7 +76,7 @@ let output1;
     }
     res.json({ mensaje: "Paciente guardado correctamente!" });
 }catch(error){
-    res.send({ mensaje: 'Error en el servidor.', error: error });
+    res.send({ mensaje: 'Error en el servidor 2.', error: error });
 }
 
 });
