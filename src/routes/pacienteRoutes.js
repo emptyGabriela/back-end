@@ -72,11 +72,11 @@ let output1;
     let output;
     output = await nuevo_paciente.save();
     if (!output) {
-        res.status(500).json({ mensaje: "Error al crear el objeto:", err });
+        res.header('Access-Control-Allow-Origin', '*').status(500).json({ mensaje: "Error al crear el objeto:", err });
     }
     res.json({ mensaje: "Paciente guardado correctamente!" });
 }catch(error){
-    res.status(500).json({ mensaje: 'Error en el servidor.', error: error });
+    res.header('Access-Control-Allow-Origin', '*').status(500).json({ mensaje: 'Error en el servidor.', error: error });
 }
 
 });
