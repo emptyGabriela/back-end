@@ -69,6 +69,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
 
     var { id } = req.params;
     var {
+        nombre,
       rol,
       especialidad,
       correo,
@@ -95,7 +96,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
       updatedUser.password = password;
     }
 
-    
+
     User.update({ _id: id }, updateUser);
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor.", error: error });
