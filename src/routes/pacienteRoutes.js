@@ -56,7 +56,7 @@ var contacto_emergencia =  ContactoEmergencia({
 let output1;
     output1 = await contacto_emergencia.save();
     if (!output1) {
-        res.status(500).json({ mensaje: "Error al crear el objeto:", err });
+        res.status(400).json({ mensaje: "Error al crear el objeto:", err });
     }
     var nuevo_paciente = Paciente({
         nombre,
@@ -72,11 +72,11 @@ let output1;
     let output;
     output = await nuevo_paciente.save();
     if (!output) {
-        res.send({ mensaje: "Error al crear el objeto:", err });
+        res.status(400).json({ mensaje: "Error al crear el objeto:", err });
     }
     res.json({ mensaje: "Paciente guardado correctamente!" });
 }catch(error){
-    res.send({ mensaje: 'Error en el servidor 2.', error: error });
+    res.status(400).json({ mensaje: 'Error en el servidor.', error: error });
 }
 
 });
@@ -91,7 +91,7 @@ router.get('/pacientes', verificarToken, async (req, res) => {
         const pacientes = await Paciente.find({ nombre: regex });
         res.json(pacientes);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error en el servidor.', error: error });
+        res.status(400).json({ mensaje: 'Error en el servidor.', error: error });
     }
 });
 
@@ -105,7 +105,7 @@ router.get('/pacientes/:id', verificarToken, async (req, res) => {
             ).exec(); // Excluye la contraseña en el resultado
         res.json(pacientes);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error en el servidor.' });
+        res.status(400).json({ mensaje: 'Error en el servidor.' });
     }
 });
 
@@ -132,7 +132,7 @@ router.get('/pacientes/:id/historial', verificarToken, async (req, res) => {
         }).exec(); // Excluye la contraseña en el resultado
         res.json(pacientes.citas);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error en el servidor.', error: error });
+        res.status(400).json({ mensaje: 'Error en el servidor.', error: error });
     }
 });
 
@@ -159,7 +159,7 @@ router.post('/pacientes/:id/nueva_cita', verificarToken, async (req, res) => {
         let citaGuardada;
         citaGuardada = await nuevaCitaMedica.save();
         if (!citaGuardada) {
-            res.status(500).json({ mensaje: "Error al crear el objeto:", err });
+            res.status(400).json({ mensaje: "Error al crear el objeto:", err });
         }
         // res.json({ mensaje: "CitaMedica guardado correctamente!" });
 
@@ -167,12 +167,12 @@ router.post('/pacientes/:id/nueva_cita', verificarToken, async (req, res) => {
         console.log(citaGuardada);
         pacienteActualizado = await paciente.save()
         if (!pacienteActualizado) {
-            res.status(500).json({ mensaje: "Error al crear el objeto:", err });
+            res.status(400).json({ mensaje: "Error al crear el objeto:", err });
         }
         res.json({ mensaje: "Paciente actualizado correctamente!" });
 
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error en el servidor.', error: error });
+        res.status(400).json({ mensaje: 'Error en el servidor.', error: error });
     }
 });
 
@@ -191,7 +191,7 @@ router.get('/citamedica/:id', verificarToken, async (req, res) => {
         const pacientes = await CitaMedica.findOne({ _id: id }); // Excluye la contraseña en el resultado
         res.json(pacientes);
     } catch (error) {
-        res.status(500).json({ mensaje: 'Error en el servidor.' });
+        res.status(400).json({ mensaje: 'Error en el servidor.' });
     }
 });
 

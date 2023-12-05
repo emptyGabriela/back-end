@@ -49,7 +49,7 @@ router.get("/usuarios", verificarToken, async (req, res) => {
       .exec(); // Excluye la contraseña en el resultado
     res.json(usuarios);
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor." });
+    res.status(400).json({ mensaje: "Error en el servidor." });
   }
 });
 
@@ -65,7 +65,7 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
       .exec(); // Excluye la contraseña en el resultado
     res.json(usuarios);
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor." });
+    res.status(400).json({ mensaje: "Error en el servidor." });
   }
 });
 
@@ -108,7 +108,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
     res.send({mensaje: "Guardado correcto",doc})
     
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor.", error: error });
+    res.status(400).json({ mensaje: "Error en el servidor.", error: error });
   }
 });
 
@@ -122,7 +122,7 @@ router.delete(
       const usuarios = await User.deleteOne({ _id: id }); // Excluye la contraseña en el resultado
       res.json({mensaje: "Eliminado correcto"});
     // } catch (error) {
-    //   res.status(500).json({ mensaje: "Error en el servidor." });
+    //   res.status(400).json({ mensaje: "Error en el servidor." });
     // }
   }
 );
@@ -163,7 +163,7 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     console.error("ERROR:", error);
-    res.status(500).json({ mensaje: "Error al iniciar sesion" });
+    res.status(400).json({ mensaje: "Error al iniciar sesion" });
   }
 });
 
@@ -179,7 +179,7 @@ router.get("/roles", verificarToken, async (req, res) => {
     const roles = await Rol.find({}); // Excluye la contraseña en el resultado
     res.json(roles);
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor." });
+    res.status(400).json({ mensaje: "Error en el servidor." });
   }
 });
 module.exports = router;
