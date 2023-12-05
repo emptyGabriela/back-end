@@ -159,7 +159,7 @@ router.post('/pacientes/:id/nueva_cita', verificarToken, async (req, res) => {
         let citaGuardada;
         citaGuardada = await nuevaCitaMedica.save();
         if (!citaGuardada) {
-            res.status(400).json({ mensaje: "Error al crear el objeto:", err });
+            res.status(400).json({ mensaje: "Error al crear el objeto:", error: '' });
         }
         // res.json({ mensaje: "CitaMedica guardado correctamente!" });
 
