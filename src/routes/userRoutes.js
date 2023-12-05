@@ -91,7 +91,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
     };
 
     if (password) {
-      updatedUser.password = password;
+        updateUser.password = password;
     }
 
     User.update({ _id: id }, updateUser);
