@@ -63,13 +63,10 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
 
 // Actualizar usuario (PUT)
 router.put("/usuarios/:id", verificarToken, async (req, res) => {
- 
-
   try {
-
     var { id } = req.params;
     var {
-        nombre,
+      nombre,
       rol,
       especialidad,
       correo,
@@ -78,7 +75,7 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
       clinica,
       foto,
       username,
-      password,
+      password
     } = req.body;
     var updateUser = {
       nombre,
@@ -89,13 +86,12 @@ router.put("/usuarios/:id", verificarToken, async (req, res) => {
       numero,
       clinica,
       foto,
-      username,
+      username
     };
-  
+
     if (content.password) {
       updatedUser.password = password;
     }
-
 
     User.update({ _id: id }, updateUser);
   } catch (error) {
