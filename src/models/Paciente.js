@@ -19,17 +19,17 @@ const pacienteSchema = new mongoose.Schema({
   },
   direccion: {
     type: String,
-    maxlength: 50 // VARCHAR(50), opcional
+    maxlength: 250 // VARCHAR(50), opcional
   },
   sexo_paciente: {
     type: String,
     required: true,
-    maxlength: 10 // VARCHAR(10)
+    maxlength: 250 // VARCHAR(10)
   },
   correo: {
     type: String,
     required: true,
-    maxlength: 50 // VARCHAR(50)
+    maxlength: 250 // VARCHAR(50)
   },
   numero_telefonico: {
     type: String,
