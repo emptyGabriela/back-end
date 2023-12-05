@@ -119,7 +119,7 @@ router.delete(
       var { id } = req.params;
       // Obtener todos los usuarios. Puedes decidir qué campos excluir en la consulta.
       const usuarios = await User.deleteOne({ _id: id }); // Excluye la contraseña en el resultado
-      res.json({mensaje: "Eliminado correcto",doc});
+      res.json({mensaje: "Eliminado correcto"});
     // } catch (error) {
     //   res.status(500).json({ mensaje: "Error en el servidor." });
     // }
