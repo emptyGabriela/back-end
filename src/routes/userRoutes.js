@@ -64,13 +64,38 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
 // Actualizar usuario (PUT)
 router.put("/usuarios/:id", verificarToken, async (req, res) => {
   var { id } = req.params;
+  var {rol,
+    especialidad,
+    correo,
+    direccion,
+    numero,
+    clinica,
+    foto:
+    username,password} = req.body
+  var updateUser = {
+    nombre,
+      rol,
+      especialidad,
+      correo,
+      direccion,
+      numero,
+      clinica,
+      foto,
+      username,
+  }
+    
+  if(content.password){
+    updatedUser.password = password;
+  }
+
+
   try {
     User.update(
       { _id: id },
-      req.body
+      updateUser
     );
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor." });
+    res.status(500).json({ mensaje: "Error en el servidor." ,error:error});
   }
 });
 
