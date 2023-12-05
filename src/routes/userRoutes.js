@@ -126,4 +126,13 @@ router.post("/logout", (req, res) => {
   res.send("Logout exitoso");
 });
 
+router.get("/roles", verificarToken, async (req, res) => {
+    try {
+      // Obtener todos los roles. Puedes decidir qué campos excluir en la consulta.
+      const roles = await Rol.find({ }); // Excluye la contraseña en el resultado
+      res.json(roles);
+    } catch (error) {
+      res.status(500).json({ mensaje: "Error en el servidor." });
+    }
+  });
 module.exports = router;
