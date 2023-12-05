@@ -42,7 +42,11 @@ router.get("/usuarios", verificarToken, async (req, res) => {
     var { username } = req.query;
     var regex = new RegExp(`${username}`, "i");
     // Obtener todos los usuarios. Puedes decidir qué campos excluir en la consulta.
-    const usuarios = await User.find({ nombre: regex }, "-password"); // Excluye la contraseña en el resultado
+    const usuarios = await User.find({ nombre: regex }, "-password").populate({
+        path: "rol",
+        model: Rol,
+      })
+      .exec(); // Excluye la contraseña en el resultado
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor." });
@@ -54,7 +58,11 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
   try {
     var { id } = req.params;
     // Obtener todos los usuarios. Puedes decidir qué campos excluir en la consulta.
-    const usuarios = await User.findOne({ _id: id }, "-password"); // Excluye la contraseña en el resultado
+    const usuarios = await User.findOne({ _id: id }, "-password").populate({
+        path: "rol",
+        model: Rol,
+      })
+      .exec(); // Excluye la contraseña en el resultado
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor." });
