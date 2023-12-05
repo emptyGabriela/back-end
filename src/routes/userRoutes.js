@@ -65,6 +65,7 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
 router.put("/usuarios/:id", verificarToken, async (req, res) => {
   try {
     var { id } = req.params;
+    console.log(req.body)
     var {
       nombre,
       rol,
