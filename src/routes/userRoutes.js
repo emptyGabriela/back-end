@@ -64,38 +64,37 @@ router.get("/usuarios/:id", verificarToken, async (req, res) => {
 // Actualizar usuario (PUT)
 router.put("/usuarios/:id", verificarToken, async (req, res) => {
   var { id } = req.params;
-  var {rol,
+  var {
+    rol,
     especialidad,
     correo,
     direccion,
     numero,
     clinica,
-    foto:
-    username,password} = req.body
+    foto,
+    username,
+    password,
+  } = req.body;
   var updateUser = {
     nombre,
-      rol,
-      especialidad,
-      correo,
-      direccion,
-      numero,
-      clinica,
-      foto,
-      username,
-  }
-    
-  if(content.password){
+    rol,
+    especialidad,
+    correo,
+    direccion,
+    numero,
+    clinica,
+    foto,
+    username,
+  };
+
+  if (content.password) {
     updatedUser.password = password;
   }
 
-
   try {
-    User.update(
-      { _id: id },
-      updateUser
-    );
+    User.update({ _id: id }, updateUser);
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor." ,error:error});
+    res.status(500).json({ mensaje: "Error en el servidor.", error: error });
   }
 });
 
@@ -152,12 +151,12 @@ router.post("/logout", (req, res) => {
 });
 
 router.get("/roles", verificarToken, async (req, res) => {
-    try {
-      // Obtener todos los roles. Puedes decidir qué campos excluir en la consulta.
-      const roles = await Rol.find({ }); // Excluye la contraseña en el resultado
-      res.json(roles);
-    } catch (error) {
-      res.status(500).json({ mensaje: "Error en el servidor." });
-    }
-  });
+  try {
+    // Obtener todos los roles. Puedes decidir qué campos excluir en la consulta.
+    const roles = await Rol.find({}); // Excluye la contraseña en el resultado
+    res.json(roles);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error en el servidor." });
+  }
+});
 module.exports = router;
