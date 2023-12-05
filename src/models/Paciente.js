@@ -11,7 +11,7 @@ const pacienteSchema = new mongoose.Schema({
   nombre: {
     type: String,
     required: true,
-    maxlength: 50 // VARCHAR(50)
+    maxlength: 250 // VARCHAR(50)
   },
   fecha_nacimiento: {
     type: Date,
